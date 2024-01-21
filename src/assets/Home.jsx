@@ -82,8 +82,29 @@ const SearchForm = () => {
   };
 
   const findNutrientByName = (nutrientName) => {
-    return food.foodNutrients.find((nutrient) => nutrient.nutrientName === nutrientName);
-  };  
+    console.log('food:', food);
+    
+    const nutrient = food.foodNutrients.find((nutrient) => nutrient.nutrientName === nutrientName);
+    
+    if (nutrient) {
+      if (food.foodMeasures.length === 0) {
+        // Se não houver informações de medidas, assume-se que seja uma unidade padrão
+        return nutrient.value;
+      } else {
+        // Assumindo que a porção padrão é a primeira na lista
+        const defaultMeasure = food.foodMeasures[0];
+        const amount = defaultMeasure ? defaultMeasure.gramWeight : 100; // Padrão para 100g se a medida padrão não estiver disponível
+  
+        // Calculando o valor do nutriente para a quantidade padrão
+        const valueForDefaultAmount = (nutrient.value * amount) / 100;
+  
+        return valueForDefaultAmount;
+      }
+    } else {
+      return 'N/A';
+    }
+  };
+    
 
   return (
     <div>
