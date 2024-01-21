@@ -124,6 +124,7 @@ const SearchForm = () => {
           <p>Proteína: {findNutrientByName('Protein')?.value || 'N/A'} G</p>
           <p>Carboidratos: {findNutrientByName('Carbohydrate, by difference')?.value || 'N/A'} G</p>
           <p>Lipídios: {findNutrientByName('Total lipid (fat)')?.value || 'N/A'} G</p>
+          <p>*Medidas para porções de 100g, ou uma unidade.*</p>
         </div>
       )}
     </div>
